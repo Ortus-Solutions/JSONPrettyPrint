@@ -14,19 +14,16 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
         	
             it( "Can pretty print a JSON string", function() {
             	var JSONPrettyPrint = getInstance( 'JSONPrettyPrint' );
-            	var formatted = JSONPrettyPrint.formatJSON( '{"foo":"bar"}' );
-            	expect( formatted ).toBe( '{
-    "foo":"bar"
-}' );
+            	var formatted = JSONPrettyPrint.formatJSON( '{ "foo" : "bar" }' );
+            	expect( formatted ).toMatch( '\{[ \t]*[\r\n]{1,2}[ \t]*"foo"[ \t]*:[ \t]*"bar"[ \t]*[\r\n]{1,2}[ \t]*}' );
             } );
         	
             it( "Can pretty print a JSON object", function() {
             	var JSONPrettyPrint = getInstance( 'JSONPrettyPrint' );
             	var formatted = JSONPrettyPrint.formatJSON( { "foo" : "bar" } );
-            	
-            	expect( trim( formatted ) ).toBe( '{
-    "foo":"bar"
-}' );
+     
+            	expect( formatted ).toMatch( '\{[ \t]*[\r\n]{1,2}[ \t]*"foo"[ \t]*:[ \t]*"bar"[ \t]*[\r\n]{1,2}[ \t]*}' );
+
             } );
             
         } );
