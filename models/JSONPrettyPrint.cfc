@@ -87,7 +87,7 @@ component accessors="true" singleton alias='JSONPrettyPrint' {
 					retval.append( newLine );
 					retval.append( repeatString( indentStr, pos ) );
 				}
-				itemsInCollection.deleteAt( itemsInCollection.len() )			
+				itemsInCollection.deleteAt( itemsInCollection.len() );
 			}
 			
 			retval.append( char );
