@@ -15,7 +15,7 @@ component accessors="true" singleton alias='JSONPrettyPrint' {
 	 * @lineEnding String to use for line endings.  Defaults to CRLF.
 	 * @spaceAfterColon Add space after each colon like "value": true instead of"value":true 
  	 **/
-	public function formatJson( json, indent='    ', lineEnding=chr( 13 ) & chr( 10 ), boolean spaceAfterColon=false ) {
+	public function formatJson( json, indent='    ', lineEnding=chr( 10 ), boolean spaceAfterColon=false ) {
 		
 		// Overload this method to accept a struct or array
 		if( !isSimpleValue( arguments.json ) ) {
