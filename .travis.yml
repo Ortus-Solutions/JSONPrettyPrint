@@ -22,3 +22,6 @@ script:
 - box testbox run runner='http://127.0.0.1:8500/tests/runner.cfm'
 notifications:
   email: false
+after_failure:
+  - box server log name=$ENGINE
+  - cat `box system-log`
