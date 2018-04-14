@@ -21,7 +21,7 @@
     },
     "installPaths":{
         "testbox":"testbox",
-        "coldbox":"tests\\resources\\app\\coldbox"
+        "coldbox":"tests/resources/app/coldbox/"
     },
     "scripts":{
         "postVersion":"package set location='Ortus-Solutions/JSONPrettyPrint#v`package version`'",

@@ -1,3 +1,6 @@
 /testbox
 /tests/results
 /tests/resources/app/coldbox
+settings.xml
+*.project
+.settings
