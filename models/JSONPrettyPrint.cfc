@@ -100,7 +100,7 @@ component accessors="true" singleton alias='JSONPrettyPrint' {
 			// Ending a block
 			if (char == '}' || char == ']') {
 				pos = pos - 1;
-				if( itemsInCollection.last() ) {
+				if( itemsInCollection[ itemsInCollection.len() ] ) {
 					retval.append( newLine );
 					retval.append( repeatString( indentStr, pos ) );
 				}
