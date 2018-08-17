@@ -10,7 +10,7 @@ env:
     - ENGINE=adobe@11
     - ENGINE=adobe@10
 before_install:
-- sudo apt-key adv --keyserver keys.gnupg.net --recv 6DA70622
+- sudo curl -fsSl https://downloads.ortussolutions.com/debs/gpg | sudo apt-key add -
 - sudo echo "deb http://downloads.ortussolutions.com/debs/noarch /" | sudo tee -a
   /etc/apt/sources.list.d/commandbox.list
 install:
@@ -19,9 +19,9 @@ install:
 before_script:
 - box server start cfengine=$ENGINE port=8500
 script:
-- box testbox run runner='http://127.0.0.1:8500/tests/runner.cfm'
+- box testbox run --verbose
 notifications:
   email: false
 after_failure:
-  - box server log name=$ENGINE
+  - box server log
   - cat `box system-log`
