@@ -38,9 +38,9 @@ component extends="testbox.system.BaseSpec" {
 
             it( 'makes both printers available for use (at your own risk on ACF)', function() {
                 var formatted = JSONPrettyPrint.getCFMLPrinter().formatJson( srcJSON );
-                // expect( isJSON( formatted ) ).toBeTrue();
+                expect( isJSON( formatted ) ).toBeTrue();
                 formatted = JSONPrettyPrint.getJSONPrinter().formatJson( srcJSON );
-                // expect( isJSON( formatted ) ).toBeTrue();
+                expect( isJSON( formatted ) ).toBeTrue();
             } );
         } );
     }
