@@ -14,7 +14,7 @@ component accessors="true" singleton alias='JSONPrettyPrint' {
 
     function init( string defaultPrinter = '' ) {
         if ( !len( defaultPrinter ) ) {
-            if ( server.coldfusion.productname == 'Lucee' && listFirst(server.lucee.version, '.') >= 5 ) {
+            if ( server.coldfusion.productname == 'Lucee' && listFirst( server.lucee.version, '.' ) >= 5 ) {
                 defaultPrinter = 'CFMLPrinter';
             } else {
                 defaultPrinter = 'JSONPrinter';
@@ -23,7 +23,13 @@ component accessors="true" singleton alias='JSONPrettyPrint' {
         setJSONPrinter( new JSONPrinter() );
         setCFMLPrinter( new CFMLPrinter() );
         setDefaultPrinter( variables[ defaultPrinter ] );
+        variables.os = createObject( 'java', 'java.lang.System' ).getProperty( 'os.name' ).toLowerCase();
         return this;
+    }
+
+    // OS detector
+    private boolean function isWindows() {
+        return variables.os.contains( 'win' );
     }
 
     /**
@@ -41,6 +47,15 @@ component accessors="true" singleton alias='JSONPrettyPrint' {
         boolean spaceAfterColon = false,
         string sortKeys = ''
     ) {
+        // Default line ending based on OS
+        if( isNull( arguments.lineEnding ) ) {
+            if( isWindows() ) {
+                arguments.lineEnding = chr( 13 ) & chr( 10 );
+            } else {
+                arguments.lineEnding = chr( 10 );
+            }
+        }
+
         return getDefaultPrinter().formatJson( argumentCollection = arguments );
     }
 
