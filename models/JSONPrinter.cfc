@@ -1,8 +1,9 @@
-component {
+component accessors="true" {
+
+    property name="parser" inject="JSONSimpleParser@JSONPrettyPrint";
 
     public any function init() {
         var osName = createObject( 'java', 'java.lang.System' ).getProperty( 'os.name' );
-        variables.parser = new JSONSimpleParser();
         variables.defaultLineEnding = osName.findNoCase( 'windows' ) ? chr( 13 ) & chr( 10 ) : chr( 10 );
         variables.defaultIndent = '    ';
         return this;

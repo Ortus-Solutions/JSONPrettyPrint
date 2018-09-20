@@ -8,21 +8,17 @@
 */
 component accessors="true" singleton alias='JSONPrettyPrint' {
 
-    property CFMLPrinter;
-    property JSONPrinter;
-    property DefaultPrinter;
+    property name="CFMLPrinter" inject="CFMLPrinter@JSONPrettyPrint";
+    property name="JSONPrinter" inject="JSONPrinter@JSONPrettyPrint";
 
-    function init( string defaultPrinter = '' ) {
-        if ( !len( defaultPrinter ) ) {
-            if ( server.coldfusion.productname == 'Lucee' && listFirst( server.lucee.version, '.' ) >= 5 ) {
-                defaultPrinter = 'CFMLPrinter';
-            } else {
-                defaultPrinter = 'JSONPrinter';
-            }
+    property name="DefaultPrinter" type="string";
+
+    function init() {
+        if ( server.coldfusion.productname == 'Lucee' && listFirst( server.lucee.version, '.' ) >= 5 ) {
+            setDefaultPrinter( 'CFMLPrinter' );
+        } else {
+            setDefaultPrinter( 'JSONPrinter' );
         }
-        setJSONPrinter( new JSONPrinter() );
-        setCFMLPrinter( new CFMLPrinter() );
-        setDefaultPrinter( variables[ defaultPrinter ] );
         variables.os = createObject( 'java', 'java.lang.System' ).getProperty( 'os.name' ).toLowerCase();
         return this;
     }
@@ -48,15 +44,15 @@ component accessors="true" singleton alias='JSONPrettyPrint' {
         string sortKeys = ''
     ) {
         // Default line ending based on OS
-        if( isNull( arguments.lineEnding ) ) {
-            if( isWindows() ) {
+        if ( isNull( arguments.lineEnding ) ) {
+            if ( isWindows() ) {
                 arguments.lineEnding = chr( 13 ) & chr( 10 );
             } else {
                 arguments.lineEnding = chr( 10 );
             }
         }
 
-        return getDefaultPrinter().formatJson( argumentCollection = arguments );
+        return variables[ getDefaultPrinter() ].formatJson( argumentCollection = arguments );
     }
 
 }
