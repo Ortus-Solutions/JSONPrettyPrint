@@ -75,6 +75,10 @@ component {
         if( !isSimpleValue( json ) ) {
         	// Attempt to convert to native JSON data types...
         	arguments.json = deserializeJSON( serializeJSON( json ) );
+            // ensure we have something that we can work with
+            if ( !isStruct( json ) && !isArray( json ) && !isSimpleValue( json ) ) {
+                throw( 'Sorry, we can''t convert an object of type [#json.getClass().getName()#] to JSON.' );
+            }
         	// ... and start over.
         	return printString( argumentCollection=arguments );
         }

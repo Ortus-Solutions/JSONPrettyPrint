@@ -52,7 +52,7 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 var testQuery = queryNew( 'id', 'integer', [ [ 1 ], [ 2 ], [ 3 ] ] );
                 var obj = { 'testQuery': testQuery };
                 var JSONPrettyPrint = getInstance( 'JSONPrettyPrint' );
-                var formatted = JSONPrettyPrint.getCFMLPrinter().formatJson( obj );
+                var formatted = JSONPrettyPrint.getCFMLPrinter().formatJson( json = obj, sortKeys = 'textnocase' );
                 expect( formatted.trim() ).toBe( fileRead( '#dataPath#queryformat.json' ).trim() );
             } );
         } );
