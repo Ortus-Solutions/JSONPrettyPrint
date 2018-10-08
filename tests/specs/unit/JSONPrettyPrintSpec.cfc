@@ -40,6 +40,18 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 expect( formatted.trim() ).toBe( fileRead( '#dataPath#nonewlines.json' ).trim() );
             } );
 
+            it( 'supports ANSI output', function() {
+                var JSONPrettyPrint = getInstance( 'JSONPrettyPrint' );
+                var ansiColors = {
+                    constant: 9,
+                    key: 14,
+                    number: 12,
+                    string: 10
+                };
+                var formatted = JSONPrettyPrint.formatJson( json = srcJSON, ansiColors = ansiColors );
+                expect( formatted.trim() ).toBe( fileRead( '#dataPath#ansi.txt' ).trim() );
+            } );
+
             it( 'makes both printers available for use (at your own risk on ACF)', function() {
                 var JSONPrettyPrint = getInstance( 'JSONPrettyPrint' );
                 var formatted = JSONPrettyPrint.getCFMLPrinter().formatJson( srcJSON );
