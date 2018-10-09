@@ -43,10 +43,10 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
             it( 'supports ANSI output', function() {
                 var JSONPrettyPrint = getInstance( 'JSONPrettyPrint' );
                 var ansiColors = {
-                    constant: 9,
-                    key: 14,
-                    number: 12,
-                    string: 10
+                    constant: chr( 27 ) & '[38;5;9m',
+                    key: chr( 27 ) & '[38;5;14m',
+                    number: chr( 27 ) & '[38;5;12m',
+                    string: chr( 27 ) & '[38;5;10m'
                 };
                 var formatted = JSONPrettyPrint.formatJson( json = srcJSON, ansiColors = ansiColors );
                 expect( formatted.trim() ).toBe( fileRead( '#dataPath#ansi.txt' ).trim() );
