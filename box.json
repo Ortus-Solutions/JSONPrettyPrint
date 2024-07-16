@@ -1,8 +1,8 @@
 {
     "name":"JSONPrettyPrint",
-    "version":"1.4.1",
+    "version":"1.4.2",
     "author":"",
-    "location":"Ortus-Solutions/JSONPrettyPrint#v1.4.1",
+    "location":"Ortus-Solutions/JSONPrettyPrint#vname,version,author,location,homepage,documentation,repository,bugs,slug,shortDescription,description,type,dependencies,devDependencies,installPaths,scripts,ignore\n1.4.2",
     "homepage":"https://github.com/Ortus-Solutions/JSONPrettyPrint",
     "documentation":"https://github.com/Ortus-Solutions/JSONPrettyPrint",
     "repository":{
