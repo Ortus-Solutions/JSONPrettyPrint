@@ -60,6 +60,16 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 expect( isJSON( formatted ) ).toBeTrue();
             } );
 
+            it( 'correctly escapes object keys with both printers', function() {
+                var JSONPrettyPrint = getInstance( 'JSONPrettyPrint' );
+                var srcJSON = '{"a\\b":1}';
+
+                var formatted = JSONPrettyPrint.getCFMLPrinter().formatJson( json = srcJSON, indent = '', lineEnding = '' );
+                expect( formatted ).toBe( '{"a\\b":1}' );
+                formatted = JSONPrettyPrint.getJSONPrinter().formatJson( json = srcJSON, indent = '', lineEnding = '' );
+                expect( formatted ).toBe( '{"a\\b":1}' );
+            } );
+
             it( 'supports formatting queries', function() {
                 var testQuery = queryNew( 'id', 'integer', [ [ 1 ], [ 2 ], [ 3 ] ] );
                 var obj = { 'testQuery': testQuery };
